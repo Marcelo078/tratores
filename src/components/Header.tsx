@@ -1,14 +1,14 @@
-import { useState } from "react";
+import { useState, forwardRef } from "react";
 import { Menu, X, Tractor, ChevronDown } from "lucide-react";
 import { Link } from "react-router-dom";
 import { categories, brands } from "@/data/products";
 
-const Header = () => {
+const Header = forwardRef<HTMLElement>((props, ref) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCategoriesOpen, setIsCategoriesOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 bg-card/95 backdrop-blur-md border-b border-border">
+    <header ref={ref} className="sticky top-0 z-50 bg-card/95 backdrop-blur-md border-b border-border" {...props}>
       <div className="container-wide">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
@@ -158,6 +158,8 @@ const Header = () => {
       )}
     </header>
   );
-};
+});
+
+Header.displayName = "Header";
 
 export default Header;

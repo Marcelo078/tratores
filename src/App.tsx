@@ -10,6 +10,7 @@ import PoliticaPrivacidade from "./pages/PoliticaPrivacidade";
 import TermosUso from "./pages/TermosUso";
 import Transparencia from "./pages/Transparencia";
 import Categoria from "./pages/Categoria";
+import Marca from "./pages/Marca";
 import Produto from "./pages/Produto";
 import NotFound from "./pages/NotFound";
 
@@ -29,6 +30,7 @@ const App = () => (
             <Route path="/termos-uso" element={<TermosUso />} />
             <Route path="/transparencia" element={<Transparencia />} />
             <Route path="/categoria/:slug" element={<Categoria />} />
+            <Route path="/marca/:slug" element={<Marca />} />
             <Route path="/produto/:slug" element={<Produto />} />
             <Route path="*" element={<NotFound />} />
           </Routes>

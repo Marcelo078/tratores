@@ -1,3 +1,4 @@
+import { forwardRef } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import Header from "@/components/Header";
@@ -21,7 +22,7 @@ const getProductImage = (category: string) => {
   }
 };
 
-const Produto = () => {
+const Produto = forwardRef<HTMLDivElement>((props, ref) => {
   const { slug } = useParams<{ slug: string }>();
   
   const product = products.find(p => {
@@ -31,11 +32,14 @@ const Produto = () => {
 
   if (!product) {
     return (
-      <div className="min-h-screen bg-background">
+      <div ref={ref} className="min-h-screen bg-background" {...props}>
         <Header />
-        <main className="py-20 text-center">
-          <h1 className="text-2xl font-bold">Produto não encontrado</h1>
-          <Link to="/" className="btn-primary mt-4 inline-block">
+        <main className="py-20 text-center container-wide">
+          <h1 className="text-2xl font-bold text-foreground mb-4">Produto não encontrado</h1>
+          <p className="text-muted-foreground mb-6">
+            O produto que você está procurando não foi encontrado em nosso catálogo.
+          </p>
+          <Link to="/" className="btn-primary inline-block">
             Voltar ao início
           </Link>
         </main>
@@ -85,7 +89,7 @@ const Produto = () => {
         </script>
       </Helmet>
 
-      <div className="min-h-screen bg-background">
+      <div ref={ref} className="min-h-screen bg-background" {...props}>
         <Header />
         
         <main className="py-8 md:py-12">
@@ -298,6 +302,8 @@ const Produto = () => {
       </div>
     </>
   );
-};
+});
+
+Produto.displayName = "Produto";
 
 export default Produto;

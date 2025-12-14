@@ -1,11 +1,12 @@
+import { forwardRef } from "react";
 import { Link } from "react-router-dom";
-import { Tractor, Mail, Phone, MapPin } from "lucide-react";
+import { Tractor } from "lucide-react";
 
-const Footer = () => {
+const Footer = forwardRef<HTMLElement>((props, ref) => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-sidebar text-sidebar-foreground">
+    <footer ref={ref} className="bg-sidebar text-sidebar-foreground" {...props}>
       {/* Main Footer */}
       <div className="container-wide py-12 md:py-16">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
@@ -122,6 +123,8 @@ const Footer = () => {
       </div>
     </footer>
   );
-};
+});
+
+Footer.displayName = "Footer";
 
 export default Footer;
